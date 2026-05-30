@@ -310,6 +310,11 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    transition: background 1.2s ease;
+}
+
+#page-2.dark-bg {
+    background: #000000 !important;
 }
 
 /* Both phases share .p2-phase */
@@ -333,28 +338,20 @@ body {
 /* Balloons */
 .p2b {
     position: absolute;
-    border-radius: 50% 50% 50% 50% / 58% 58% 42% 42%;
     opacity: 0;
     transition: opacity .7s ease;
 }
 
-.p2b::after {
-    /* string */
-    content: '';
-    position: absolute;
-    width: 1.5px;
-    height: 28px;
-    background: rgba(0, 0, 0, 0.18);
-    bottom: -27px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 1px;
+.p2b img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(2px 5px 5px rgba(0, 0, 0, .12));
 }
 
 .b1 {
     width: 52px;
     height: 66px;
-    background: var(--main-pink);
     left: 5%;
     top: 10%;
     animation: bBob 3s ease-in-out infinite;
@@ -363,7 +360,6 @@ body {
 .b2 {
     width: 42px;
     height: 54px;
-    background: #ffb3c6;
     left: 11%;
     top: 42%;
     animation: bBob 4s ease-in-out infinite reverse;
@@ -372,8 +368,6 @@ body {
 .b3 {
     width: 48px;
     height: 62px;
-    background: var(--white);
-    border: 2px solid #ffb3c6;
     left: 3%;
     top: 66%;
     animation: bBob 3.5s ease-in-out infinite;
@@ -382,7 +376,6 @@ body {
 .b4 {
     width: 54px;
     height: 68px;
-    background: var(--light-pink);
     right: 5%;
     top: 12%;
     animation: bBob 3.2s ease-in-out infinite reverse;
@@ -391,7 +384,6 @@ body {
 .b5 {
     width: 42px;
     height: 54px;
-    background: #ffb3c6;
     right: 10%;
     top: 44%;
     animation: bBob 4.5s ease-in-out infinite;
@@ -400,71 +392,13 @@ body {
 .b6 {
     width: 56px;
     height: 72px;
-    background: var(--main-pink);
     right: 3%;
     top: 68%;
     animation: bBob 3.8s ease-in-out infinite reverse;
 }
 
-/* Scene phase reuses same balloon classes with sb* ids */
-.sb1,
-.sb2,
-.sb3,
-.sb4 {
-    position: absolute;
-    border-radius: 50% 50% 50% 50%/58% 58% 42% 42%;
-}
 
-.sb1::after,
-.sb2::after,
-.sb3::after,
-.sb4::after {
-    content: '';
-    position: absolute;
-    width: 1.5px;
-    height: 24px;
-    background: rgba(0, 0, 0, 0.15);
-    bottom: -23px;
-    left: 50%;
-    transform: translateX(-50%);
-}
 
-.sb1 {
-    width: 46px;
-    height: 59px;
-    background: var(--main-pink);
-    left: 4%;
-    top: 10%;
-    animation: bBob 3.5s ease-in-out infinite;
-}
-
-.sb2 {
-    width: 50px;
-    height: 64px;
-    background: #ffb3c6;
-    left: 7%;
-    bottom: 18%;
-    animation: bBob 4s ease-in-out infinite reverse;
-}
-
-.sb3 {
-    width: 44px;
-    height: 57px;
-    background: var(--light-pink);
-    right: 5%;
-    top: 16%;
-    animation: bBob 3.2s ease-in-out infinite;
-}
-
-.sb4 {
-    width: 48px;
-    height: 61px;
-    background: var(--white);
-    border: 2px solid #ffb3c6;
-    right: 7%;
-    bottom: 16%;
-    animation: bBob 4.5s ease-in-out infinite reverse;
-}
 
 @keyframes bBob {
 
@@ -542,32 +476,7 @@ body {
     animation-delay: .6s;
 }
 
-.ss1 {
-    position: absolute;
-    color: var(--light-pink);
-    font-size: 1rem;
-    top: 9%;
-    left: 36%;
-    animation: sTwink 2.2s ease-in-out infinite;
-}
 
-.ss2 {
-    position: absolute;
-    color: #ffb3c6;
-    font-size: 1.4rem;
-    top: 18%;
-    right: 26%;
-    animation: sTwink 3s ease-in-out infinite;
-}
-
-.ss3 {
-    position: absolute;
-    color: var(--main-pink);
-    font-size: .8rem;
-    bottom: 13%;
-    left: 30%;
-    animation: sTwink 2.5s ease-in-out infinite;
-}
 
 /* Streamers */
 .p2sr {
@@ -670,21 +579,163 @@ body {
     pointer-events: none;
 }
 
-.p2-scene-phase.scene-in {
-    animation: sceneIn .75s ease-out forwards;
+#p2-scene.scene-in {
+    animation: sceneFadeIn .75s ease-out forwards;
 }
 
-@keyframes sceneIn {
+@keyframes sceneFadeIn {
     from {
         opacity: 0;
-        transform: scale(.95)
     }
-
     to {
         opacity: 1;
-        transform: scale(1)
     }
 }
+
+/* Staggered Cake Card Reveal */
+.scene-in .cake-card {
+    animation: cakeCardReveal 0.95s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes cakeCardReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Staggered Cake Plate Reveal */
+.scene-in .cake-plate {
+    animation: cakePlateReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+}
+
+@keyframes cakePlateReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Staggered Tiers Reveal */
+.scene-in .tier.t1 {
+    animation: tierReveal 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s both;
+    transform-origin: bottom center;
+}
+
+.scene-in .tier.t2 {
+    animation: tierReveal 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s both;
+    transform-origin: bottom center;
+}
+
+.scene-in .tier.t3 {
+    animation: tierReveal 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s both;
+    transform-origin: bottom center;
+}
+
+@keyframes tierReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(24px) scaleY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1);
+    }
+}
+
+/* Staggered Candle Reveal */
+.scene-in .lux-candle {
+    animation: candleReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.1s both;
+    transform-origin: bottom center;
+}
+
+@keyframes candleReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Flame Ignition Burst */
+.scene-in .lux-flame {
+    animation: flameReveal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.3s both, burnFlame .82s infinite alternate ease-in-out 1.7s;
+}
+
+@keyframes flameReveal {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.4);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+/* Glow Halo Reveal */
+.scene-in .flame-halo {
+    animation: haloReveal 0.6s ease-out 1.3s both, haloPulse 1.15s ease-in-out infinite alternate 1.9s;
+}
+
+@keyframes haloReveal {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+/* Twinkling Sparkles Stagger */
+.scene-in .ck-sp {
+    animation: sparkleReveal 0.5s ease-out 1.4s both, sTwink 2s ease-in-out infinite 1.9s;
+}
+
+@keyframes sparkleReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Hint Text Fade In */
+.scene-in .cake-hint {
+    animation: hintReveal 0.5s ease-out 1.6s both, hintPulse 2s ease-in-out infinite 2.1s;
+}
+
+@keyframes hintReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 /* Cake card
    overflow:hidden + generous padding = flame halo NEVER bleeds out */
@@ -1204,7 +1255,7 @@ body {
 .wish-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(18, 0, 28, .93);
+    background: #000000;
     z-index: 30;
     display: flex;
     justify-content: center;
