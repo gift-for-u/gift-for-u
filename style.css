@@ -284,23 +284,6 @@ body {
     box-shadow: 0 2px 0 #ffb3c6;
 }
 
-.btn-no {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 600;
-    background: transparent;
-    color: var(--light-pink);
-    border: 2.5px solid var(--light-pink);
-    padding: 14px 30px;
-    border-radius: 50px;
-    font-size: clamp(.9rem, 2.5vw, 1.1rem);
-    cursor: pointer;
-    transition: opacity .2s;
-    z-index: 100;
-}
-
-.btn-no:hover {
-    opacity: .6;
-}
 
 /* Pink flash */
 .pink-flash {
@@ -1385,6 +1368,8 @@ body {
     justify-content: space-between;
     padding: 0 10px;
     transform: translateY(-150px);
+}
+.page-active .flag__birthday {
     animation: dropDown 1.5s var(--spring) forwards;
 }
 
@@ -1481,6 +1466,9 @@ body {
     display: inline-block;
     opacity: 0;
     transform: scale(.9) translateY(-30px);
+}
+.page-active .happy span,
+.page-active .birthday span {
     animation: smoothDrop 1s var(--t) ease-out forwards;
 }
 
@@ -1523,6 +1511,8 @@ body {
 .pop-in-namepic {
     opacity: 0;
     transform: scale(.9) translateY(-20px);
+}
+.page-active .pop-in-namepic {
     animation: namePop 1s 2.0s var(--spring) forwards;
 }
 
@@ -1536,18 +1526,24 @@ body {
 .pop-in-extra {
     opacity: 0;
     transform: translateY(-40px);
+}
+.page-active .pop-in-extra {
     animation: dropEl 1s 2.4s ease-out forwards;
 }
 
 .pop-in-date {
     opacity: 0;
     transform: translateY(-40px);
+}
+.page-active .pop-in-date {
     animation: dropEl 1s 3.4s ease-out forwards;
 }
 
 .pop-in-btn {
     opacity: 0;
     transform: translateY(-40px);
+}
+.page-active .pop-in-btn {
     animation: dropEl 1s 5.4s ease-out forwards;
 }
 
@@ -1645,6 +1641,8 @@ body {
 .slide-up-bottom {
     opacity: 0;
     transform: translateY(120px);
+}
+.page-active .slide-up-bottom {
     animation: slideUp 1.2s 2.8s ease-out forwards;
 }
 
@@ -1771,6 +1769,8 @@ body {
 .scale-in {
     opacity: 0;
     transform: scale(0);
+}
+.page-active .scale-in {
     animation: scaleUp 1s 6.0s ease-out forwards;
 }
 
