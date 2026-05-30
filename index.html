@@ -80,29 +80,28 @@
      ===================================================== -->
     <div class="page" id="page-2">
 
+        <!-- Decorative background (balloons / stars animate in during countdown) -->
+        <div class="p2-decor" id="p2-decor">
+            <div class="p2b b1"><img src="./images/balloon1.png" alt="Balloon"></div>
+            <div class="p2b b2"><img src="./images/balloon2.png" alt="Balloon"></div>
+            <div class="p2b b3"><img src="./images/balloon1.png" alt="Balloon"></div>
+            <div class="p2b b4"><img src="./images/balloon2.png" alt="Balloon"></div>
+            <div class="p2b b5"><img src="./images/balloon1.png" alt="Balloon"></div>
+            <div class="p2b b6"><img src="./images/balloon2.png" alt="Balloon"></div>
+
+            <div class="p2s s1">✦</div>
+            <div class="p2s s2">✦</div>
+            <div class="p2s s3">✦</div>
+            <div class="p2s s4">✦</div>
+            <div class="p2s s5">✦</div>
+            <div class="p2s s6">✦</div>
+
+            <div class="p2sr sr1"></div>
+            <div class="p2sr sr2"></div>
+        </div>
+
         <!-- PHASE A: Countdown -->
         <div id="p2-countdown" class="p2-phase">
-
-            <!-- Decorative background (balloons / stars animate in during countdown) -->
-            <div class="p2-decor" id="p2-decor">
-                <div class="p2b b1"></div>
-                <div class="p2b b2"></div>
-                <div class="p2b b3"></div>
-                <div class="p2b b4"></div>
-                <div class="p2b b5"></div>
-                <div class="p2b b6"></div>
-
-                <div class="p2s s1">✦</div>
-                <div class="p2s s2">✦</div>
-                <div class="p2s s3">✦</div>
-                <div class="p2s s4">✦</div>
-                <div class="p2s s5">✦</div>
-                <div class="p2s s6">✦</div>
-
-                <div class="p2sr sr1"></div>
-                <div class="p2sr sr2"></div>
-            </div>
-
             <!-- Big countdown number -->
             <div class="cd-overlay">
                 <div id="cd-num" class="cd-num">3</div>
@@ -112,16 +111,6 @@
         <!-- PHASE B: Decorated cake scene -->
         <div id="p2-scene" class="p2-phase hidden">
 
-            <!-- Persistent scene background -->
-            <div class="p2-scene-bg">
-                <div class="p2b sb1"></div>
-                <div class="p2b sb2"></div>
-                <div class="p2b sb3"></div>
-                <div class="p2b sb4"></div>
-                <div class="p2s ss1">✦</div>
-                <div class="p2s ss2">✦</div>
-                <div class="p2s ss3">✦</div>
-            </div>
 
             <!-- Cake card -->
             <div class="cake-card" id="cake-card">
@@ -333,7 +322,7 @@
                         <div class="title__letter"></div>
                         <div class="content__letter">
                             <div class="left">
-                                <img id="heart__letter" src="./images/dancing.gif" alt="">
+                                <img id="heart__letter" src="./images/dancing2.gif" alt="">
                                 <img class="heart heart_1" style="--t:0.2s" width="20" src="./images/heart.png" alt="">
                                 <img class="heart heart_2" style="--t:0.4s" width="20" src="./images/heart.png" alt="">
                                 <img class="heart heart_3" style="--t:0.6s" width="20" src="./images/heart.png" alt="">
@@ -341,7 +330,7 @@
                             </div>
                             <div class="right">
                                 <div class="love__img">
-                                    <img src="images/dancing2.gif" alt="" width="150">
+                                    <img src="images/dancing.gif" alt="" width="150">
                                 </div>
                                 <div class="text__letter">
                                     <p></p>
@@ -411,7 +400,7 @@
         /* ========================================================
            CONFIG
            ======================================================== */
-        const LETTER_TEXT_P3 = "I Hope this birthday fills you with all the joys for you so generously. You truly deserve all the happiness that comes your way. I wish you endless joy, peace, and health. Always stay happy!✨";
+        const LETTER_TEXT_P3 = "I Hope this birthday fills you with all the joys so generously. You truly deserve all the happiness that comes your way. I wish you endless joy, peace, and health. Always stay happy!✨";
         const LETTER_TITLE_P3 = "Specially made for youuu";
         const DATE_TEXT = "30th May";
 
@@ -504,12 +493,15 @@
             // Reset
             document.getElementById('p2-countdown').classList.remove('hidden');
             document.getElementById('p2-scene').classList.add('hidden');
+            document.getElementById('p2-scene').classList.remove('scene-in');
             document.getElementById('lux-flame').style.cssText = '';
             document.getElementById('smoke-puff').style.display = 'none';
             document.getElementById('wish-overlay').classList.add('hidden');
             document.getElementById('flame-halo').style.cssText = '';
             document.getElementById('cake-hint').style.opacity = '1';
             document.getElementById('cake-card').classList.remove('cake-dim');
+            document.getElementById('p2-decor').className = 'p2-decor';
+            document.getElementById('page-2').classList.remove('dark-bg');
             candleBlown = false;
 
             runCountdown(() => {
@@ -523,7 +515,7 @@
         }
 
         function runCountdown(done) {
-            const steps = ['3', '2', '1', '✨'];
+            const steps = ['3', '2', '1'];
             const el = document.getElementById('cd-num');
             const decor = document.getElementById('p2-decor');
             let i = 0;
@@ -558,6 +550,9 @@
             const halo = document.getElementById('flame-halo');
             const smoke = document.getElementById('smoke-puff');
             const hint = document.getElementById('cake-hint');
+
+            // Fade the background of page 2 to solid black
+            document.getElementById('page-2').classList.add('dark-bg');
 
             /* 1. Flicker out */
             flame.style.animation = 'flickerOut 0.35s forwards';
