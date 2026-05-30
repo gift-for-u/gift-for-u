@@ -61,14 +61,13 @@
             <p class="p1-sub" id="p1-sub">(warning: this might make you smile)</p>
 
             <!-- Placeholder image — swap src to any image you like -->
-            <div class="p1-photo-frame" id="p1-photo-frame">
-                <img src="./images/r5.png" alt="A special moment" id="p1-photo" class="p1-photo">
+            <div>
+                <img src="./images/landing.png" alt="A special moment" id="p1-photo" class="p1-photo">
             </div>
 
             <!-- CTA Buttons -->
             <div class="p1-btns" id="p1-btns">
                 <button id="btn-yes" class="btn-yes">YES! 🎉</button>
-                <button id="btn-no" class="btn-no">No</button>
             </div>
         </div>
 
@@ -126,7 +125,7 @@
 
             <!-- Cake card -->
             <div class="cake-card" id="cake-card">
-                <h2 class="cake-card-title">Make a Wish! ✨</h2>
+                <h2 class="cake-card-title">Blow the candle</h2>
 
                 <!-- ══════════════════════════════════
                  LUXURY 3-TIER CSS CAKE
@@ -235,7 +234,7 @@
 
             <!-- Wish overlay (full-screen dim after candle blow) -->
             <div id="wish-overlay" class="wish-overlay hidden">
-                <p class="wish-text">Make a wish… ✨</p>
+                <p class="wish-text">Ready ...</p>
             </div>
 
         </div><!-- /p2-scene -->
@@ -298,7 +297,7 @@
                 <div class="right">
                     <div class="box__account slide-up-bottom">
                         <div class="image float-anim">
-                            <img src="./images/r5.png" alt="Birthday Person">
+                            <img src="./images/r5.jpeg" alt="Birthday Person">
                         </div>
                         <div class="name">
                             <i class="fa-solid fa-heart beat"></i>
@@ -334,8 +333,7 @@
                         <div class="title__letter"></div>
                         <div class="content__letter">
                             <div class="left">
-                                <img id="heart__letter" src="https://media.giphy.com/media/YKUvclrGYmDKXwtphf/giphy.gif"
-                                    alt="">
+                                <img id="heart__letter" src="./images/dancing.gif" alt="">
                                 <img class="heart heart_1" style="--t:0.2s" width="20" src="./images/heart.png" alt="">
                                 <img class="heart heart_2" style="--t:0.4s" width="20" src="./images/heart.png" alt="">
                                 <img class="heart heart_3" style="--t:0.6s" width="20" src="./images/heart.png" alt="">
@@ -343,8 +341,7 @@
                             </div>
                             <div class="right">
                                 <div class="love__img">
-                                    <img src="https://media.giphy.com/media/m85llaN7ZkFIHtURiC/giphy.gif" alt=""
-                                        width="150">
+                                    <img src="images/dancing2.gif" alt="" width="150">
                                 </div>
                                 <div class="text__letter">
                                     <p></p>
@@ -397,7 +394,7 @@
 
             <h1 class="p6-heading">Happy Birthday, Hari 🎀</h1>
             <p class="p6-sub">This little corner of the internet was made just for you.</p>
-            <p class="p6-signoff">with love, always 💕</p>
+            <p class="p6-signoff">always keep your smile💕</p>
 
             <button id="p6-revisit" class="p6-revisit">← revisit from the start</button>
         </div>
@@ -414,8 +411,8 @@
         /* ========================================================
            CONFIG
            ======================================================== */
-        const LETTER_TEXT_P3 = "you carry sunshine in your smile and warm in all the things you do.I Hope this birthday fills you with all the joys for you so generously. I wish you endless joy, peace, and health. Let's celebrate many more together! Happy birthday! 💖✨";
-        const LETTER_TITLE_P3 = "For My Special One";
+        const LETTER_TEXT_P3 = "I Hope this birthday fills you with all the joys for you so generously. You truly deserve all the happiness that comes your way. I wish you endless joy, peace, and health. Always stay happy!✨";
+        const LETTER_TITLE_P3 = "Specially made for youuu";
         const DATE_TEXT = "30th May";
 
 
@@ -463,7 +460,6 @@
            PAGE 1 — ARE YOU READY?
            ======================================================== */
         const btnYes = document.getElementById('btn-yes');
-        const btnNo = document.getElementById('btn-no');
 
         /* — YES — */
         btnYes.addEventListener('click', () => {
@@ -476,30 +472,6 @@
         /* Speed up hearts on YES hover */
         btnYes.addEventListener('mouseenter', () => document.getElementById('p1-fh-bg').classList.add('fh-fast'));
         btnYes.addEventListener('mouseleave', () => document.getElementById('p1-fh-bg').classList.remove('fh-fast'));
-
-        /* — NO (desktop: mouseover runs away) — */
-        btnNo.addEventListener('mouseover', runNo);
-
-        /* — NO (mobile: touchstart + 300 ms debounce so new position can't be instantly tapped) — */
-        let noCanTap = true;
-        btnNo.addEventListener('touchstart', function (e) {
-            e.preventDefault();
-            if (!noCanTap) return;
-            noCanTap = false;
-            runNo();
-            setTimeout(() => { noCanTap = true; }, 300);
-        }, { passive: false });
-
-        function runNo() {
-            const padding = 80;
-            const x = padding + Math.random() * (window.innerWidth - padding * 2 - btnNo.offsetWidth);
-            const y = padding + Math.random() * (window.innerHeight - padding * 2 - btnNo.offsetHeight);
-            btnNo.style.position = 'fixed';
-            btnNo.style.left = x + 'px';
-            btnNo.style.top = y + 'px';
-            btnNo.style.margin = '0';
-            btnNo.style.transform = 'none';
-        }
 
         function yesBurst() {
             const r = btnYes.getBoundingClientRect();
@@ -646,6 +618,7 @@
 
         /* Letter modal */
         $('#btn__letter').on('click', () => {
+            document.getElementById('page-3').scrollTo({ top: 0, behavior: 'smooth' });
             burstConfetti();
             $('.box__letter').css('display', 'flex').hide().fadeIn(400);
             setTimeout(() => $('.box__letter .letter__border').addClass('active'), 100);
